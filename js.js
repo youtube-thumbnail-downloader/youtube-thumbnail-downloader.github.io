@@ -7,7 +7,6 @@ function img_create(src, alt, title) {
     return img;
 }
 
-
 function cleanUp() {
     document.getElementById("but").disabled = false;
     document.getElementById("thumbnails").innerHTML = "";
@@ -22,14 +21,7 @@ function app() {
     }
     generateImage(url);
 }
-/*
 
-    var url = location.search.split('url=')[1];
-    url = url.split('?src=')[0];
-    console.log(url);
-
-
-*/
 function generateImage(url) {
     cleanUp();
     var vid = "";
@@ -43,19 +35,19 @@ function generateImage(url) {
     }
 
     imgUrl1 = vid + "/1.jpg";
-    imgUrl2 = vid + "/2.jpg"
-    imgUrl3 = vid + "/3.jpg"
-    imgUrlDefault = vid + "/default.jpg"
-    imgUrlMqDefault = vid + "/mqdefault.jpg"
-    imgUrlHqDefault = vid + "/hqdefault.jpg"
-    imgUrlMaxResDefault = vid + "/maxresdefault.jpg"
-    var img1 = img_create(imgUrl1, "Auto Thumb-1", "Thumbnail1")
-    var img2 = img_create(imgUrl2, "Auto Thumb-2", "Thumbnail2")
-    var img3 = img_create(imgUrl3, "Auto Thumb-3", "Thumbnail3")
-    var imgDefault = img_create(imgUrlDefault, "Default", "Default")
-    var imgMqDefault = img_create(imgUrlMqDefault, "MQ Default", "MQ Default")
-    var imgHqDefault = img_create(imgUrlHqDefault, "HQ Default", "HQ Default")
-    var imgMaxResDefault = img_create(imgUrlMaxResDefault, "MaxRes Default", "MaxRes Default")
+    imgUrl2 = vid + "/2.jpg";
+    imgUrl3 = vid + "/3.jpg";
+    imgUrlDefault = vid + "/default.jpg";
+    imgUrlMqDefault = vid + "/mqdefault.jpg";
+    imgUrlHqDefault = vid + "/hqdefault.jpg";
+    imgUrlMaxResDefault = vid + "/maxresdefault.jpg";
+    var img1 = img_create(imgUrl1, "Auto Thumb-1", "Thumbnail1");
+    var img2 = img_create(imgUrl2, "Auto Thumb-2", "Thumbnail2");
+    var img3 = img_create(imgUrl3, "Auto Thumb-3", "Thumbnail3");
+    var imgDefault = img_create(imgUrlDefault, "Default", "Default");
+    var imgMqDefault = img_create(imgUrlMqDefault, "MQ Default", "MQ Default");
+    var imgHqDefault = img_create(imgUrlHqDefault, "HQ Default", "HQ Default");
+    var imgMaxResDefault = img_create(imgUrlMaxResDefault, "MaxRes Default", "MaxRes Default");
     var imgUrlsElements = [imgMaxResDefault, imgHqDefault, imgMqDefault, imgDefault, img3, img2, img1];
     for (var i = 0; i < imgUrlsElements.length; i++) {
         var imgContainer = document.createElement("div");
@@ -63,15 +55,14 @@ function generateImage(url) {
         var link = document.createElement("a");
         link.href = imgUrlsElements[i].src;
         link.download = imgUrlsElements[i].title + ".jpg";
+        link.target = "_blank";  // Added target="_blank" to open in a new tab
         link.appendChild(imgUrlsElements[i]);
         imgContainer.appendChild(link);
         var titleContainer = document.createElement("div");
         titleContainer.id = "titleContainer";
-        titleContainer.innerHTML = "<p>" + imgUrlsElements[i].title + "</p>"
+        titleContainer.innerHTML = "<p>" + imgUrlsElements[i].title + "</p>";
         imgContainer.appendChild(titleContainer);
         document.getElementById("thumbnails").appendChild(imgContainer);
-
     }
     window.scrollBy(0, 550);
 }
-// :D Completed
