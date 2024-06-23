@@ -55,7 +55,7 @@ function generateImage(url) {
         var link = document.createElement("a");
         link.href = imgUrlsElements[i].src;
         link.download = imgUrlsElements[i].title + ".jpg";
-        link.target = "_blank";  // Added target="_blank" to open in a new tab
+        link.target = "_blank";
         link.appendChild(imgUrlsElements[i]);
         imgContainer.appendChild(link);
         var titleContainer = document.createElement("div");
@@ -65,4 +65,32 @@ function generateImage(url) {
         document.getElementById("thumbnails").appendChild(imgContainer);
     }
     window.scrollBy(0, 550);
+    createDownloadButton(imgUrlsElements);
+}
+
+function createDownloadButton(imgUrlsElements) {
+    var downloadButton = document.createElement("button");
+    downloadButton.innerHTML = "Download All";
+    downloadButton.style.backgroundColor = "#ff4b2b"; // Red button background
+    downloadButton.style.color = "#ffffff"; // White button text
+    downloadButton.style.border = "none";
+    downloadButton.style.padding = "10px 20px";
+    downloadButton.style.fontSize = "1rem";
+    downloadButton.style.cursor = "pointer";
+    downloadButton.style.borderRadius = "5px";
+    downloadButton.onclick = function() {
+        downloadImages(imgUrlsElements);
+    };
+    document.getElementById("thumbnails").appendChild(downloadButton);
+}
+
+function downloadImages(imgUrlsElements) {
+    for (var i = 0; i < imgUrlsElements.length; i++) {
+        var link = document.createElement("a");
+        link.href = imgUrlsElements[i].src;
+        link.download = imgUrlsElements[i].title + ".jpg";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 }
